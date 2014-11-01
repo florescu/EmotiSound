@@ -36,7 +36,7 @@ public class FloatScale <T> {
         }
         else
         {
-            for(int i = 1; i <= nrPartitions; i++)
+            for(int i = 1; i < nrPartitions; i++)
             {
                 if (input < partitionedInput.get(i))
                 {
