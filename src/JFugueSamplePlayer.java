@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
 import java.util.List;
 import org.jfugue.Pattern;
 import org.jfugue.Player;
@@ -25,20 +26,33 @@ public class JFugueSamplePlayer {
             while(mc.HasReadings())
             {
                 EmotivReading currentReading = mc.GetNextReading();
-                String noteExcitementShortTerm = BasicJFugueSamplePlayer.PlayExcitementShortTerm(currentReading);
-                String noteExcitementLongTerm = BasicJFugueSamplePlayer.PlayExcitementLongTerm(currentReading);
-                String noteEngagementBoredom = BasicJFugueSamplePlayer.PlayEngagementBoredom(currentReading);
-                String noteFrustration = BasicJFugueSamplePlayer.PlayFrustration(currentReading);
-                String noteMeditation = BasicJFugueSamplePlayer.PlayMeditation(currentReading);
-                String noteSmile = BasicJFugueSamplePlayer.PlaySmile(currentReading);
-                String noteClench = BasicJFugueSamplePlayer.PlayClench(currentReading);
-                String noteEyebrowRaise = BasicJFugueSamplePlayer.PlayEyebrowRaise(currentReading);
+                final String noteExcitementShortTerm = BasicJFugueSamplePlayer.PlayExcitementShortTerm(currentReading);
+                final String noteExcitementLongTerm = BasicJFugueSamplePlayer.PlayExcitementLongTerm(currentReading);
+                final String noteEngagementBoredom = BasicJFugueSamplePlayer.PlayEngagementBoredom(currentReading);
+                final String noteFrustration = BasicJFugueSamplePlayer.PlayFrustration(currentReading);
+                final String noteMeditation = BasicJFugueSamplePlayer.PlayMeditation(currentReading);
+                final String noteSmile = BasicJFugueSamplePlayer.PlaySmile(currentReading);
+                final String noteClench = BasicJFugueSamplePlayer.PlayClench(currentReading);
+                final String noteEyebrowRaise = BasicJFugueSamplePlayer.PlayEyebrowRaise(currentReading);
+
+                List<String> notesList = new LinkedList<String>(){{
+                    add(noteExcitementShortTerm);
+                    add(noteEngagementBoredom);
+                    add(noteFrustration);
+                    add(noteMeditation);
+                    add(noteSmile);
+                    add(noteClench);
+                    add(noteEyebrowRaise);
+                    }};
+
+                String notesAndVoices = MusicalStringComposer.AppendVoice(notesList);
 
                 Player player = new Player();
-                String emotiSong = noteExcitementShortTerm + "+" + noteExcitementLongTerm; /* + "+" + noteEngagementBoredom
+                String emotiSong = noteExcitementShortTerm + "+" + noteExcitementLongTerm + "+" + noteEngagementBoredom
                                 + "+" + noteFrustration + "+" + noteMeditation + "+" + noteSmile + "+" + noteClench
-                                + "+" + noteEyebrowRaise;*/
-                player.play(emotiSong);
+                                + "+" + noteEyebrowRaise;
+
+                player.play(notesAndVoices);
             }
 
         } catch (FileNotFoundException e) {

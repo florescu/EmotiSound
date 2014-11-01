@@ -18,9 +18,11 @@ public class MusicalStringComposer {
                 break;
             }
 
-            String voice = "V" + string;
+            String voice = "V" + counter;
 
             result += " " + voice + " " + string;
+
+            counter++;
         }
 
         return result;
