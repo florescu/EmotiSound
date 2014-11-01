@@ -11,7 +11,7 @@ public class TestPlayer {
 
         Pattern song = new Pattern();
 
-        song.add(new Pattern("I[ECHOES] B+C C+D A+D E+F E+A+C"));
+        song.add(new Pattern("V0 I[ECHOES] B V1 I[GUITAR] C"));
 
         /*// "Frere Jacques"
         Pattern pattern1 = new Pattern("C5q D5q E5q C5q");
