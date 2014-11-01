@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Common/Common.iml" filepath="$PROJECT_DIR$/Common/Common.iml" />
       <module fileurl="file://$PROJECT_DIR$/JFUGUEPlayer/JFUGUEPlayer.iml" filepath="$PROJECT_DIR$/JFUGUEPlayer/JFUGUEPlayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/studentHack.iml" filepath="$PROJECT_DIR$/studentHack.iml" />
     </modules>

@@ -32,6 +32,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="JFUGUEPlayer" exported="" />
+    <orderEntry type="module" module-name="Common" exported="" />
   </component>
 </module>
 
