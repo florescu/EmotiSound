@@ -37,7 +37,7 @@ public class EmotivReadingSampler {
         }
         catch (IOException e)
         {
-            Logger.LogException(e);
+            logger.LogException(e);
         }
     }
 }

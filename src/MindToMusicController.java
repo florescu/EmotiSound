@@ -5,7 +5,7 @@ import java.util.List;
  * Created by rosudrag-pc on 11/1/2014.
  */
 public class MindToMusicController {
-    private LinkedList<EmotivReading> EmotivReadings;
+    private List<EmotivReading> EmotivReadings;
 
     private static MindToMusicController instance = null;
 
@@ -28,9 +28,14 @@ public class MindToMusicController {
         this.EmotivReadings.add(emotivReading);
     }
 
+    public void AddCompleteSample(List<EmotivReading> readings)
+    {
+        this.EmotivReadings = readings;
+    }
+
     public EmotivReading GetNextReading() {
-        EmotivReading reading = EmotivReadings.getFirst();
-        EmotivReadings.removeFirst();
+        EmotivReading reading = EmotivReadings.get(0);
+        EmotivReadings.remove(0);
         return reading;
     }
 

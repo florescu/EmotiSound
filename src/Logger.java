@@ -15,7 +15,7 @@ public class Logger {
         return instance;
     }
 
-    public static void LogException(Exception e)
+    public void LogException(Exception e)
     {
         System.out.println(e.getMessage());
     }
