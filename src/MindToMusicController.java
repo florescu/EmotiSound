@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by rosudrag-pc on 11/1/2014.
@@ -13,6 +14,16 @@ public class MindToMusicController implements IMindToMusicController{
 
     }
 
+    public static IMindToMusicController GetInstance()
+    {
+        if(instance == null)
+        {
+            instance = new MindToMusicController();
+        }
+
+        return instance;
+    }
+
     @Override
     public void AddReading(EmotivReading emotivReading) {
         this.EmotivReadings.add(emotivReading);
@@ -25,13 +36,10 @@ public class MindToMusicController implements IMindToMusicController{
         return reading;
     }
 
-    public static IMindToMusicController GetInstance()
+    public List<EmotivReading> GetAllReadings()
     {
-        if(instance == null)
-        {
-            instance = new MindToMusicController();
-        }
-
-        return instance;
+        return EmotivReadings;
     }
+
+
 }
