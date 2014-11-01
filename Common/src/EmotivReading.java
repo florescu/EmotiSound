@@ -26,5 +26,4 @@ public class EmotivReading {
     public float EngagementBoredom;
     public float Frustration;
     public float Meditation;
-
 }
