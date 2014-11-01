@@ -25,17 +25,78 @@ public class MusicPlayer {
 		gainControl.setValue(frequency * pitch);	
 	}
 	
-	public static void playDrum() throws Exception
+	public static void playSound(File source, float decibels) throws Exception
 	{
-		 File source = new File("drum2.wav");
 		 Line.Info lineInfo = new Line.Info(Clip.class);
 		 Line line = AudioSystem.getLine(lineInfo);
-		 drumClip = (Clip) line;
+		 Clip musicClip = (Clip) line;
 		 AudioInputStream input = AudioSystem.getAudioInputStream(source);
-		 drumClip.open(input);
-		 float decibels = -10;
-		 setVolume(drumClip, decibels);
-		 //setPitch(drumClip, 1);
-		 drumClip.start();
+		 musicClip.open(input);
+		 setVolume(musicClip, decibels);
+		 musicClip.start();
 	}
+	
+	public static void playDrum() throws Exception
+	{
+		 File source = new File("PlayList/drum2.wav");
+		 float decibels = -10;
+		 playSound(source, decibels);
+	}
+	
+	public static void playGuitar() throws Exception
+	{
+		File source = new File("PlayList/guitar.wav");
+		float decibels = 0;
+		playSound(source, decibels);
+	}
+	
+	public static void playBass() throws Exception
+	{
+		File source = new File("PlayList/bass.wav");
+		float decibels = 0;
+		playSound(source, decibels);
+	}
+	
+	public static void playBass2() throws Exception
+	{
+		File source = new File("PlayList/bass2.wav");
+		float decibels = 0;
+		playSound(source, decibels);
+	}
+	
+	public static void playFlute() throws Exception
+	{
+		File source = new File("PlayList/flute.wav");
+		float decibels = 0;
+		playSound(source, decibels);
+	}
+	
+	public static void playHarp() throws Exception
+	{
+		File source = new File("PlayList/harp.wav");
+		float decibels = 0;
+		playSound(source, decibels);
+	}
+	
+	public static void playPiano() throws Exception
+	{
+		File source = new File("PlayList/piano.wav");
+		float decibels = 0;
+		playSound(source, decibels);
+	}
+	
+	public static void playSax() throws Exception
+	{
+		File source = new File("PlayList/sax.wav");
+		float decibels = 0;
+		playSound(source, decibels);
+	}
+	
+	public static void playViolin() throws Exception
+	{
+		File source = new File("PlayList/violin.wav");
+		float decibels = 0;
+		playSound(source, decibels);
+	}
+	
 }
