@@ -25,14 +25,14 @@ public class JFugueSamplePlayer {
             while(mc.HasReadings())
             {
                 EmotivReading currentReading = mc.GetNextReading();
-                final String noteExcitementShortTerm = BasicJFugueSamplePlayer.PlayExcitementShortTerm(currentReading);
-                final String noteExcitementLongTerm = BasicJFugueSamplePlayer.PlayExcitementLongTerm(currentReading);
-                final String noteEngagementBoredom = BasicJFugueSamplePlayer.PlayEngagementBoredom(currentReading);
-                final String noteFrustration = BasicJFugueSamplePlayer.PlayFrustration(currentReading);
-                final String noteMeditation = BasicJFugueSamplePlayer.PlayMeditation(currentReading);
-                final String noteSmile = BasicJFugueSamplePlayer.PlaySmile(currentReading);
+                final String noteExcitementShortTerm = BasicJFugueSamplePlayer.GetExcitementShortTermTuple(currentReading);
+                final String noteExcitementLongTerm = BasicJFugueSamplePlayer.GetExcitementLongTermTuple(currentReading);
+                final String noteEngagementBoredom = BasicJFugueSamplePlayer.GetEngagementBoredomTuple(currentReading);
+                final String noteFrustration = BasicJFugueSamplePlayer.GetFrustrationTuple(currentReading);
+                final String noteMeditation = BasicJFugueSamplePlayer.GetMeditationTuple(currentReading);
+                final String noteSmile = BasicJFugueSamplePlayer.GetSmileTuple(currentReading);
                 final String noteClench = BasicJFugueSamplePlayer.PlayClench(currentReading);
-                final String noteEyebrowRaise = BasicJFugueSamplePlayer.PlayEyebrowRaise(currentReading);
+                final String noteEyebrowRaise = BasicJFugueSamplePlayer.GetEyebrowRaiseTuple(currentReading);
 
                 List<String> notesList = new LinkedList<String>(){{
                     add(noteExcitementShortTerm);

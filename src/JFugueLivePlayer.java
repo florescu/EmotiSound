@@ -37,31 +37,13 @@ public class JFugueLivePlayer {
             mc.AddReading(reading);
 
             EmotivReading currentReading = mc.GetNextReading();
-            final String noteExcitementShortTerm = BasicJFugueSamplePlayer.PlayExcitementShortTerm(currentReading);
-            final String noteExcitementLongTerm = BasicJFugueSamplePlayer.PlayExcitementLongTerm(currentReading);
-            final String noteEngagementBoredom = BasicJFugueSamplePlayer.PlayEngagementBoredom(currentReading);
-            final String noteFrustration = BasicJFugueSamplePlayer.PlayFrustration(currentReading);
-            final String noteMeditation = BasicJFugueSamplePlayer.PlayMeditation(currentReading);
-            final String noteSmile = BasicJFugueSamplePlayer.PlaySmile(currentReading);
-            final String noteClench = BasicJFugueSamplePlayer.PlayClench(currentReading);
-            final String noteEyebrowRaise = BasicJFugueSamplePlayer.PlayEyebrowRaise(currentReading);
-
-            List<String> notesList = new LinkedList<String>(){{
-                add(noteExcitementShortTerm);
-                add(noteExcitementLongTerm);
-                add(noteEngagementBoredom);
-                add(noteFrustration);
-                add(noteMeditation);
-                add(noteSmile);
-                add(noteClench);
-                add(noteEyebrowRaise);
-            }};
+            List<String> notesList = BasicJFugueSamplePlayer.generateMusicalString(currentReading);
 
             String notesAndVoices = MusicalStringComposer.AppendVoice(notesList);
 
             player.play(notesAndVoices);
         }
-
-
     }
+
+
 }

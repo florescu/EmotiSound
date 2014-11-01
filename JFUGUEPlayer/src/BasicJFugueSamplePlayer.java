@@ -1,7 +1,5 @@
-import org.jfugue.Pattern;
-import org.jfugue.Player;
-
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -10,6 +8,14 @@ import java.util.List;
 public class BasicJFugueSamplePlayer {
 
     private BasicJFugueSamplePlayer instance = null;
+    private static float excitementShortTermExtent;
+    private static float excitementLongTermExtent;
+    private static float engagementBoredomExtent;
+    private static float frustrationExtent;
+    private static float meditationExtent;
+    private static float eyebrowRaiseExtent;
+    private static float smileExtent;
+    private static float clenchExtent;
 
     private static List<String> musicalNotes = new ArrayList<String>() {{
         add("A");
@@ -47,68 +53,125 @@ public class BasicJFugueSamplePlayer {
         return instance;
     }
 
-    public static String PlayExcitementShortTerm(EmotivReading reading)
+    public static StringFloatTuple GetExcitementShortTuple(EmotivReading reading)
     {
-        float excitementShortTermExtent = reading.ExcitementShortTerm;
+        excitementShortTermExtent = reading.ExcitementShortTerm;
         String musicalNoteExcitementShortTerm = musicalNoteScale.DoScale(excitementShortTermExtent * 100);
         String duration = durationScale.DoScale(excitementShortTermExtent * 100);
-        return "I[Guitar] " + musicalNoteExcitementShortTerm + duration;
+        final String musicalNotes = "I[Guitar] " + musicalNoteExcitementShortTerm + duration;
+        return new StringFloatTuple(){{aString = musicalNotes; aFloat = excitementShortTermExtent;}};
     }
 
-    public static String PlayExcitementLongTerm(EmotivReading reading)
+    public static StringFloatTuple GetExcitementLongTermTuple(EmotivReading reading)
     {
-        float excitementLongTermExtent = reading.ExcitementLongTerm;
+        excitementLongTermExtent = reading.ExcitementLongTerm;
         String musicalNoteExcitementLongTerm = musicalNoteScale.DoScale(excitementLongTermExtent * 100);
         String duration = durationScale.DoScale(excitementLongTermExtent * 100);
-        return "I[SYNTH_DRUM] " + musicalNoteExcitementLongTerm + duration;
+        final String musicalNotes = "I[SYNTH_DRUM] " + musicalNoteExcitementLongTerm + duration;
+        return new StringFloatTuple(){{aString = musicalNotes; aFloat = excitementLongTermExtent;}};
     }
 
-    public static String PlayEngagementBoredom(EmotivReading reading)
+    public static StringFloatTuple GetEngagementBoredomTuple(EmotivReading reading)
     {
-        float engagementBoredomExtent = reading.EngagementBoredom;
+        engagementBoredomExtent = reading.EngagementBoredom;
         String musicalNoteEngagementBoredom =musicalNoteScale.DoScale(engagementBoredomExtent * 100);
         String duration = durationScale.DoScale(engagementBoredomExtent * 100);
-        return "I[ACOUSTIC_BASS] " + musicalNoteEngagementBoredom + duration;
+        final String musicalNotes = "I[ACOUSTIC_BASS] " + musicalNoteEngagementBoredom + duration;
+        return new StringFloatTuple(){{aString = musicalNotes; aFloat = engagementBoredomExtent;}};
     }
 
-    public static String PlayFrustration(EmotivReading reading)
+    public static StringFloatTuple GetFrustrationTuple(EmotivReading reading)
     {
-        float frustrationExtent = reading.Frustration;
+        frustrationExtent = reading.Frustration;
         String musicalNoteFrustration = musicalNoteScale.DoScale(frustrationExtent * 100);
         String duration = durationScale.DoScale(frustrationExtent * 100);
-        return "I[Piano] " + musicalNoteFrustration + duration;
+        final String musicalNotes = "I[Piano] " + musicalNoteFrustration + duration;
+        return new StringFloatTuple(){{aString = musicalNotes; aFloat = frustrationExtent;}};
     }
 
-    public static String PlayMeditation(EmotivReading reading)
+    public static StringFloatTuple GetMeditationTuple(EmotivReading reading)
     {
-        float meditationExtent = reading.Meditation;
+        meditationExtent = reading.Meditation;
         String musicalNoteMeditation = musicalNoteScale.DoScale(meditationExtent * 100);
         String duration = durationScale.DoScale(meditationExtent * 100);
-        return "I[Violin] " + musicalNoteMeditation + duration;
+        final String musicalNotes = "I[Violin] " + musicalNoteMeditation + duration;
+        return new StringFloatTuple(){{aString = musicalNotes; aFloat = meditationExtent;}};
     }
 
-    public static String PlayEyebrowRaise(EmotivReading reading)
+    public static StringFloatTuple GetEyebrowRaiseTuple(EmotivReading reading)
     {
-        float eyebrowRaiseExtent = reading.EyebrowRaise;
+        eyebrowRaiseExtent = reading.EyebrowRaise;
         String musicalNoteEyebrowRaise = musicalNoteScale.DoScale(eyebrowRaiseExtent * 100);
         String duration = durationScale.DoScale(eyebrowRaiseExtent * 100);
-        return "I[PAN_FLUTE] " + musicalNoteEyebrowRaise + duration;
+        final String musicalNotes = "I[PAN_FLUTE] " + musicalNoteEyebrowRaise + duration;
+        return new StringFloatTuple(){{aString = musicalNotes; aFloat = eyebrowRaiseExtent;}};
     }
 
-    public static String PlaySmile(EmotivReading reading)
+    public static StringFloatTuple GetSmileTuple(EmotivReading reading)
     {
-        float smileExtent = reading.Smile;
+        smileExtent = reading.Smile;
         String musicalNoteSmile = musicalNoteScale.DoScale(smileExtent * 100);
         String duration = durationScale.DoScale(smileExtent * 100);
-        return "I[ALTO_SAX] " + musicalNoteSmile + duration;
+        final String musicalNotes = "I[ALTO_SAX] " + musicalNoteSmile + duration;
+        return new StringFloatTuple(){{aString = musicalNotes; aFloat = smileExtent;}};
     }
 
-    public static String PlayClench(EmotivReading reading)
+    public static StringFloatTuple PlayClench(EmotivReading reading)
     {
-        float clenchExtent = reading.Clench;
+        clenchExtent = reading.Clench;
         String musicalNoteClench = musicalNoteScale.DoScale(clenchExtent * 100);
         String duration = durationScale.DoScale(clenchExtent * 100);
-        return "I[Banjo] " + musicalNoteClench + duration;
+        final String musicalNotes = "I[Banjo] " + musicalNoteClench + duration;
+        return new StringFloatTuple(){{aString = musicalNotes; aFloat = clenchExtent;}};
     }
 
+    public static List<String> generateMusicalString(EmotivReading currentReading) {
+        final StringFloatTuple noteExcitementShortTerm = BasicJFugueSamplePlayer.GetExcitementShortTuple(currentReading);
+        final StringFloatTuple noteExcitementLongTerm = BasicJFugueSamplePlayer.GetExcitementLongTermTuple(currentReading);
+        final StringFloatTuple noteEngagementBoredom = BasicJFugueSamplePlayer.GetEngagementBoredomTuple(currentReading);
+        final StringFloatTuple noteFrustration = BasicJFugueSamplePlayer.GetFrustrationTuple(currentReading);
+        final StringFloatTuple noteMeditation = BasicJFugueSamplePlayer.GetMeditationTuple(currentReading);
+        final StringFloatTuple noteSmile = BasicJFugueSamplePlayer.GetSmileTuple(currentReading);
+        final StringFloatTuple noteClench = BasicJFugueSamplePlayer.PlayClench(currentReading);
+        final StringFloatTuple noteEyebrowRaise = BasicJFugueSamplePlayer.GetEyebrowRaiseTuple(currentReading);
+
+        //Compute max.
+
+
+        
+
+
+        return new LinkedList<String>(){{
+            add(noteExcitementShortTerm);
+            add(noteExcitementLongTerm);
+            add(noteEngagementBoredom);
+            add(noteFrustration);
+            add(noteMeditation);
+            add(noteSmile);
+            add(noteClench);
+            add(noteEyebrowRaise);
+        }};
+    }
+
+}
+
+class StringFloatTuple implements Comparable<StringFloatTuple>
+{
+    String aString;
+    float aFloat;
+
+    @Override
+    public int compareTo(StringFloatTuple o) {
+        if(this.aFloat < o.aFloat)
+        {
+            return -1;
+        }
+        else if(this.aFloat > o.aFloat)
+        {
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
 }
