@@ -43,7 +43,7 @@ public class MindMusic {
 							System.out.println("LookingLeft");
 						if (EmoState.INSTANCE.ES_ExpressivIsLookingRight(eState) == 1)
 							System.out.println("LookingRight");
-						if (EmoState.INSTANCE.ES_)
+						//if (EmoState.INSTANCE.ES_)
 						clenchExtent = EmoState.INSTANCE.ES_ExpressivGetClenchExtent(eState);
 						
 						System.out.print("ExcitementShortTerm: ");

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/blabla/Documents/GitHub/studentHack/dll"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/blabla/Documents/GitHub/studentHack/jna.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="lib" path="C:/Users/blabla/Documents/GitHub/studentHack/StudentHack/jna.jar"/>
+	<classpathentry kind="output" path=""/>
 </classpath>
