@@ -15,6 +15,18 @@ public class JFugueSamplePlayer {
         try {
             List<EmotivReading> readings = EmotivReadingSampleDeserializer.DeserializeFileIntoReadingList(filename);
 
+            MindToMusicController mc = MindToMusicController.GetInstance();
+
+            mc.AddCompleteSample(readings);
+
+
+            while(mc.HasReadings())
+            {
+                EmotivReading currentReading = mc.GetNextReading();
+                BasicJFugueSamplePlayer.PlayOne(currentReading);
+            }
+
+
         } catch (FileNotFoundException e) {
             logger.LogException(e);
         }

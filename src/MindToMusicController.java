@@ -44,5 +44,14 @@ public class MindToMusicController {
         return EmotivReadings;
     }
 
+    public boolean HasReadings()
+    {
+        if(EmotivReadings.isEmpty())
+        {
+            return false;
+        }
+
+        return true;
+    }
 
 }
