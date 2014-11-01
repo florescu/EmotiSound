@@ -4,17 +4,17 @@ import java.util.List;
 /**
  * Created by rosudrag-pc on 11/1/2014.
  */
-public class MindToMusicController implements IMindToMusicController{
+public class MindToMusicController {
     private LinkedList<EmotivReading> EmotivReadings;
 
-    private static IMindToMusicController instance = null;
+    private static MindToMusicController instance = null;
 
     protected MindToMusicController()
     {
-
+    	EmotivReadings = new LinkedList<EmotivReading>();
     }
 
-    public static IMindToMusicController GetInstance()
+    public static MindToMusicController GetInstance()
     {
         if(instance == null)
         {
@@ -24,12 +24,10 @@ public class MindToMusicController implements IMindToMusicController{
         return instance;
     }
 
-    @Override
     public void AddReading(EmotivReading emotivReading) {
         this.EmotivReadings.add(emotivReading);
     }
 
-    @Override
     public EmotivReading GetNextReading() {
         EmotivReading reading = EmotivReadings.getFirst();
         EmotivReadings.removeFirst();

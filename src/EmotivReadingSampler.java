@@ -14,7 +14,7 @@ public class EmotivReadingSampler {
 
     protected EmotivReadingSampler(){}
 
-    public EmotivReadingSampler GetInstance()
+    public static EmotivReadingSampler GetInstance()
     {
         if(instance == null)
         {

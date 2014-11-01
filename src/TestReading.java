@@ -1,11 +1,13 @@
+import java.util.List;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
-public class MindMusic {
-	
+
+public class TestReading {
 	public static void main(String[] args) throws Exception
 	{
-    	Pointer eEvent			= Edk.INSTANCE.EE_EmoEngineEventCreate();
+		Pointer eEvent			= Edk.INSTANCE.EE_EmoEngineEventCreate();
     	Pointer eState			= Edk.INSTANCE.EE_EmoStateCreate();
     	IntByReference userID 	= null;
     	int state  				= 0;
@@ -17,7 +19,6 @@ public class MindMusic {
     	float engagementBoredom;
     	float frustration;
     	float meditation;
-    	float maxScore;
     	int lowerFaceAction;
     	int upperFaceAction;
     	
@@ -28,11 +29,13 @@ public class MindMusic {
 			return;
 		}
 		
-		//Start recording
-		JavaSoundRecorder.recordSound();
-		
-		while (true) 
+		MindToMusicController mc = MindToMusicController.GetInstance();
+		EmotivReadingSampler sampler = EmotivReadingSampler.GetInstance();
+		int counter = 0;
+		while (counter < 40) 
 		{
+			
+			EmotivReading myReading = new EmotivReading();
 			state = Edk.INSTANCE.EE_EngineGetNextEvent(eEvent);
 
 			// New event needs to be handled
@@ -48,81 +51,53 @@ public class MindMusic {
 					
 					//Eye states
 					if (EmoState.INSTANCE.ES_ExpressivIsBlink(eState) == 1)
-					{
-						MusicPlayer.playDrum();
-						System.out.println("Blink");
-					}
+						myReading.Blink = true;
+					
 					if (EmoState.INSTANCE.ES_ExpressivIsLeftWink(eState) == 1)
-					{
-						System.out.println("LeftWink");
-						MusicPlayer.playBass();
-					}
+						myReading.WinkLeft = true;
+					
 					if (EmoState.INSTANCE.ES_ExpressivIsRightWink(eState) == 1)
-					{
-						System.out.println("RightWink");
-						MusicPlayer.playFlute();
-					}
+						myReading.WinkRight = true;
+					
 					if (EmoState.INSTANCE.ES_ExpressivIsLookingLeft(eState) == 1)
-					{
-						System.out.println("LookingLeft");
-						MusicPlayer.playBass2();
-					}
+						myReading.LookingLeft = true;
+					
 					if (EmoState.INSTANCE.ES_ExpressivIsLookingRight(eState) == 1)
-					{
-						System.out.println("LookingRight");
-						MusicPlayer.playGuitar();
-					}
+						myReading.LookingRight = true;
 					
 					//Upper face actions: Raise brow, Furrow brow
 					upperFaceAction = EmoState.INSTANCE.ES_ExpressivGetUpperFaceAction(eState);
 					if (upperFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_EYEBROW.ToInt())
 					{
-						System.out.println("Raise brow");
 						eyebrowExtent = EmoState.INSTANCE.ES_ExpressivGetEyebrowExtent(eState);
-						System.out.println("Eyebrow (raise): " + eyebrowExtent);
-						MusicPlayer.playHarp(eyebrowExtent);
+						myReading.EyebrowRaise = eyebrowExtent;
 					}
 					
 					if (upperFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_FURROW.ToInt())
-					{
-						System.out.println("Furrow brow");	
-					}
+						myReading.FurrowBrow = true;
 					
 					//Lower face actions: Smile, Smirk left, Smirk Right, Clench, Laugh.
 					lowerFaceAction = EmoState.INSTANCE.ES_ExpressivGetLowerFaceAction(eState);
 					if (lowerFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_SMILE.ToInt())
 					{
-						System.out.println("Smile");
 						smileExtent = EmoState.INSTANCE.ES_ExpressivGetSmileExtent(eState);
-						System.out.println("Smile: " + smileExtent);
-						MusicPlayer.playTrumpet(smileExtent);
+						myReading.Smile = smileExtent;
 					}
 					
 					if (lowerFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_CLENCH.ToInt())
 					{
-						System.out.println("Clench");
 						clenchExtent = EmoState.INSTANCE.ES_ExpressivGetClenchExtent(eState);
-						System.out.println("Clench: " + clenchExtent);
-						MusicPlayer.playViolin(clenchExtent);
+						myReading.Clench = clenchExtent;
 					}
-					
+
 					if (lowerFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_LAUGH.ToInt())
-					{
-						System.out.println("Laugh");
-						MusicPlayer.playPiano();
-					}
+						myReading.Laugh = true;
 					
 					if (lowerFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_SMIRK_LEFT.ToInt())
-					{
-						System.out.println("SmirkLeft");
-						MusicPlayer.playCello();
-					}
+						myReading.SmirkLeft = true;
 					
 					if (lowerFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_SMIRK_RIGHT.ToInt())
-					{
-						System.out.println("SmirkRight");
-						MusicPlayer.playTriangle();
-					}
+						myReading.SmirkRight = true;
 
 					excitementShortTerm = EmoState.INSTANCE.ES_AffectivGetExcitementShortTermScore(eState);
 					excitementLongTerm = EmoState.INSTANCE.ES_AffectivGetExcitementLongTermScore(eState);
@@ -130,50 +105,30 @@ public class MindMusic {
 					frustration = EmoState.INSTANCE.ES_AffectivGetFrustrationScore(eState);
 					meditation = EmoState.INSTANCE.ES_AffectivGetMeditationScore(eState);
 					
-					if (excitementShortTerm > 0 ) 
-					{
-						//MusicPlayer.playBeat1(excitementShortTerm);
-					}
-						
+					myReading.ExcitementShortTerm = excitementShortTerm;
+					myReading.ExcitementLongTerm = excitementLongTerm;
+					myReading.EngagementBoredom = engagementBoredom;
+					myReading.Frustration = frustration;
+					myReading.Meditation = meditation;
 					
-					if (excitementLongTerm > 0)
-					{
-						MusicPlayer.playBeat2(excitementLongTerm);
-						Thread.sleep(1000); //1 second
-					}
-					
-					
-					if (engagementBoredom > 0)
-					{
-						MusicPlayer.playBeat3(engagementBoredom);
-						Thread.sleep(800);
-					}
-					
-					
-					if (frustration > 0)
-					{
-						MusicPlayer.playBeat4(frustration);
-						Thread.sleep(2000); 
-					}
-					
-					if (meditation > 0)
-					{
-						MusicPlayer.playBeat5(meditation);
-						Thread.sleep(1000);
-					}
-					
-					EmotivReading myReading = new EmotivReading();
-					 
+
 				}
+				
 			}
 			else if (state != EdkErrorCode.EDK_NO_EVENT.ToInt()) {
 				System.out.println("Internal error in Emotiv Engine!");
 				break;
 			}
+			
+			mc.AddReading(myReading);
+			Thread.sleep(500);
+			counter++;
 		}
+		
+		List<EmotivReading> emotivReadings = mc.GetAllReadings(); 
+		sampler.CreateSampleFile("sample3.txt", emotivReadings);
     	 
     	Edk.INSTANCE.EE_EngineDisconnect();
     	System.out.println("Disconnected!");	
     }//main	 
-	 
-} //class
+}
