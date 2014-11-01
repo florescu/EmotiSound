@@ -39,7 +39,7 @@ public class BasicJFugueSamplePlayer {
             add("G");
         }};
 
-        String musicalNote = MusicalNoteScale.Scale(extent * 100, 0, 100, musicalNotes);
+        String musicalNote = FloatScale.Scale(extent * 100, 0, 100, musicalNotes);
 
         Pattern song = new Pattern(musicalNote);
 
