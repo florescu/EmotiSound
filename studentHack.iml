@@ -14,10 +14,10 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="module-library">
-      <library name="jna.jar">
+    <orderEntry type="module-library" exported="">
+      <library>
         <CLASSES>
-          <root url="file://C:/Users/blabla/Documents/GitHub/studentHack/jna.jar" />
+          <root url="jar://$MODULE_DIR$/src/jna.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
