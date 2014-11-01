@@ -32,7 +32,7 @@ public class MusicGUI extends JFrame{
         bgMusicToggle.setSelected(false);
         contentPane.add(bgMusicToggle, BorderLayout.LINE_START);
         
-        JCheckBox.addActionListener(this);
+        JCheckBox.addActionListener(bgMusicToggle);
         
         frame.pack();
         frame.setVisible(true);
