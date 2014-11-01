@@ -20,6 +20,8 @@ public class JFugueSamplePlayer {
 
             mc.AddCompleteSample(readings);
 
+            Player player = new Player();
+
             while(mc.HasReadings())
             {
                 EmotivReading currentReading = mc.GetNextReading();
@@ -43,11 +45,6 @@ public class JFugueSamplePlayer {
                     }};
 
                 String notesAndVoices = MusicalStringComposer.AppendVoice(notesList);
-
-                Player player = new Player();
-                String emotiSong = noteExcitementShortTerm + "+" + noteExcitementLongTerm + "+" + noteEngagementBoredom
-                                + "+" + noteFrustration + "+" + noteMeditation + "+" + noteSmile + "+" + noteClench
-                                + "+" + noteEyebrowRaise;
 
                 player.play(notesAndVoices);
             }

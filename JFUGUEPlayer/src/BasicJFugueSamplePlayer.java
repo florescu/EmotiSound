@@ -21,7 +21,17 @@ public class BasicJFugueSamplePlayer {
         add("G");
     }};
 
+    private static List<String> noteDuration = new ArrayList<String>() {{
+        add("n");
+        add("x");
+        add("t");
+        add("s");
+        add("i");
+        add("q");
+    }};
+
     private static FloatScale<String> musicalNoteScale = new FloatScale<String>(0, 100, musicalNotes);
+    private static FloatScale<String> durationScale = new FloatScale<String>(0, 100, noteDuration);
 
     protected BasicJFugueSamplePlayer()
     {
@@ -41,56 +51,64 @@ public class BasicJFugueSamplePlayer {
     {
         float excitementShortTermExtent = reading.ExcitementShortTerm;
         String musicalNoteExcitementShortTerm = musicalNoteScale.DoScale(excitementShortTermExtent * 100);
-        return "I[Guitar] " + musicalNoteExcitementShortTerm;
+        String duration = durationScale.DoScale(excitementShortTermExtent * 100);
+        return "I[Guitar] " + musicalNoteExcitementShortTerm + duration;
     }
 
     public static String PlayExcitementLongTerm(EmotivReading reading)
     {
         float excitementLongTermExtent = reading.ExcitementLongTerm;
         String musicalNoteExcitementLongTerm = musicalNoteScale.DoScale(excitementLongTermExtent * 100);
-        return "I[SYNTH_DRUM] " + musicalNoteExcitementLongTerm;
+        String duration = durationScale.DoScale(excitementLongTermExtent * 100);
+        return "I[SYNTH_DRUM] " + musicalNoteExcitementLongTerm + duration;
     }
 
     public static String PlayEngagementBoredom(EmotivReading reading)
     {
         float engagementBoredomExtent = reading.EngagementBoredom;
         String musicalNoteEngagementBoredom =musicalNoteScale.DoScale(engagementBoredomExtent * 100);
-        return "I[ACOUSTIC_BASS] " + musicalNoteEngagementBoredom;
+        String duration = durationScale.DoScale(engagementBoredomExtent * 100);
+        return "I[ACOUSTIC_BASS] " + musicalNoteEngagementBoredom + duration;
     }
 
     public static String PlayFrustration(EmotivReading reading)
     {
         float frustrationExtent = reading.Frustration;
         String musicalNoteFrustration = musicalNoteScale.DoScale(frustrationExtent * 100);
-        return "I[Piano] " + musicalNoteFrustration;
+        String duration = durationScale.DoScale(frustrationExtent * 100);
+        return "I[Piano] " + musicalNoteFrustration + duration;
     }
 
     public static String PlayMeditation(EmotivReading reading)
     {
         float meditationExtent = reading.Meditation;
         String musicalNoteMeditation = musicalNoteScale.DoScale(meditationExtent * 100);
-        return "I[Violin] " + musicalNoteMeditation;
+        String duration = durationScale.DoScale(meditationExtent * 100);
+        return "I[Violin] " + musicalNoteMeditation + duration;
     }
 
     public static String PlayEyebrowRaise(EmotivReading reading)
     {
         float eyebrowRaiseExtent = reading.EyebrowRaise;
         String musicalNoteEyebrowRaise = musicalNoteScale.DoScale(eyebrowRaiseExtent * 100);
-        return "I[PAN_FLUTE] " + musicalNoteEyebrowRaise;
+        String duration = durationScale.DoScale(eyebrowRaiseExtent * 100);
+        return "I[PAN_FLUTE] " + musicalNoteEyebrowRaise + duration;
     }
 
     public static String PlaySmile(EmotivReading reading)
     {
         float smileExtent = reading.Smile;
         String musicalNoteSmile = musicalNoteScale.DoScale(smileExtent * 100);
-        return "I[ALTO_SAX] " + musicalNoteSmile;
+        String duration = durationScale.DoScale(smileExtent * 100);
+        return "I[ALTO_SAX] " + musicalNoteSmile + duration;
     }
 
     public static String PlayClench(EmotivReading reading)
     {
         float clenchExtent = reading.Clench;
         String musicalNoteClench = musicalNoteScale.DoScale(clenchExtent * 100);
-        return "I[Banjo] " + musicalNoteClench;
+        String duration = durationScale.DoScale(clenchExtent * 100);
+        return "I[Banjo] " + musicalNoteClench + duration;
     }
 
 }
