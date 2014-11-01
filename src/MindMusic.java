@@ -20,7 +20,6 @@ public class MindMusic {
     	float maxScore;
     	int lowerFaceAction;
     	int upperFaceAction;
-    	boolean playBackground = true;
     	
     	userID = new IntByReference(0);
     	
@@ -31,9 +30,8 @@ public class MindMusic {
 		
 		//Start recording
 		JavaSoundRecorder.recordSound();
-	
-		//Open GUI
-		MusicGUI gui = new MusicGUI();
+
+		IMindMusicController musicController = new MindMusicController();
 		
 		while (true) 
 		{
@@ -127,53 +125,46 @@ public class MindMusic {
 						System.out.println("SmirkRight");
 						MusicPlayer.playTriangle();
 					}
-					
-					if (playBackground)
-					{
 
-						excitementShortTerm = EmoState.INSTANCE.ES_AffectivGetExcitementShortTermScore(eState);
-						excitementLongTerm = EmoState.INSTANCE.ES_AffectivGetExcitementLongTermScore(eState);
-						engagementBoredom = EmoState.INSTANCE.ES_AffectivGetEngagementBoredomScore(eState);
-						frustration = EmoState.INSTANCE.ES_AffectivGetFrustrationScore(eState);
-						meditation = EmoState.INSTANCE.ES_AffectivGetMeditationScore(eState);
+					excitementShortTerm = EmoState.INSTANCE.ES_AffectivGetExcitementShortTermScore(eState);
+					excitementLongTerm = EmoState.INSTANCE.ES_AffectivGetExcitementLongTermScore(eState);
+					engagementBoredom = EmoState.INSTANCE.ES_AffectivGetEngagementBoredomScore(eState);
+					frustration = EmoState.INSTANCE.ES_AffectivGetFrustrationScore(eState);
+					meditation = EmoState.INSTANCE.ES_AffectivGetMeditationScore(eState);
+					
+					if (excitementShortTerm > 0 ) 
+					{
+						//MusicPlayer.playBeat1(excitementShortTerm);
+					}
 						
-						maxScore = Math.max(excitementShortTerm, excitementLongTerm);
-						maxScore = Math.max(maxScore, engagementBoredom);
-						maxScore = Math.max(maxScore, frustration);
-						maxScore = Math.max(maxScore, meditation);
-						
-						if (excitementShortTerm == maxScore ) 
-						{
-							//MusicPlayer.playBeat1(excitementShortTerm);
-						}
-							
-						
-						if (excitementLongTerm == maxScore || excitementShortTerm == maxScore)
-						{
-							MusicPlayer.playBeat2(excitementLongTerm);
-							Thread.sleep(1000); //1 second
-						}
-						
-						
-						if (engagementBoredom == maxScore)
-						{
-							MusicPlayer.playBeat3(engagementBoredom);
-							Thread.sleep(800);
-						}
-						
-						
-						if (frustration == maxScore)
-						{
-							MusicPlayer.playBeat4(frustration);
-							Thread.sleep(2000); 
-						}
-						
-						if (meditation == maxScore)
-						{
-							MusicPlayer.playBeat5(meditation);
-							Thread.sleep(1000);
-						}
-					}	
+					
+					if (excitementLongTerm > 0)
+					{
+						MusicPlayer.playBeat2(excitementLongTerm);
+						Thread.sleep(1000); //1 second
+					}
+					
+					
+					if (engagementBoredom > 0)
+					{
+						MusicPlayer.playBeat3(engagementBoredom);
+						Thread.sleep(800);
+					}
+					
+					
+					if (frustration > 0)
+					{
+						MusicPlayer.playBeat4(frustration);
+						Thread.sleep(2000); 
+					}
+					
+					if (meditation > 0)
+					{
+						MusicPlayer.playBeat5(meditation);
+						Thread.sleep(1000);
+					}
+					
+					EmotivReading myReading = new EmotivReading();
 					 
 				}
 			}
@@ -182,7 +173,7 @@ public class MindMusic {
 				break;
 			}
 		}
-    	
+    	 
     	Edk.INSTANCE.EE_EngineDisconnect();
     	System.out.println("Disconnected!");	
     }//main	 

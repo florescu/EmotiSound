@@ -125,6 +125,17 @@ public class MusicPlayer {
 		playSound(source, decibels);
 	}
 	
+	public static void playHouseBeat(float score) throws Exception
+	{
+		File source = new File("PlayList/house.wav");
+		float decibels;
+		if (score < 0.5)
+			decibels = -DB_MULTIPLIER * score * 2;
+		else
+			decibels = MAX_DB_ALLOWED * score / 3;
+		playSound(source, decibels);
+	}
+	
 	public static void playBeat2(float score) throws Exception
 	{
 		File source = new File("PlayList/beat2.wav");
