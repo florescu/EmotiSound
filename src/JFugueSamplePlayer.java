@@ -12,7 +12,7 @@ public class JFugueSamplePlayer {
 
     public static void main(String[] args)
     {
-        String filename = "sample1.txt";
+        String filename = "sample2.txt";
 
         try {
             List<EmotivReading> readings = EmotivReadingSampleDeserializer.DeserializeFileIntoReadingList(filename);
@@ -35,9 +35,9 @@ public class JFugueSamplePlayer {
                 String noteEyebrowRaise = BasicJFugueSamplePlayer.PlayEyebrowRaise(currentReading);
 
                 Player player = new Player();
-                String emotiSong = noteExcitementShortTerm + "+" + noteExcitementLongTerm + "+" + noteEngagementBoredom
+                String emotiSong = noteExcitementShortTerm + "+" + noteExcitementLongTerm; /* + "+" + noteEngagementBoredom
                                 + "+" + noteFrustration + "+" + noteMeditation + "+" + noteSmile + "+" + noteClench
-                                + "+" + noteEyebrowRaise;
+                                + "+" + noteEyebrowRaise;*/
                 player.play(emotiSong);
             }
 
