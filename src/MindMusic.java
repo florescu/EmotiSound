@@ -12,8 +12,15 @@ public class MindMusic {
     	float clenchExtent;
     	float eyebrowExtent;
     	float smileExtent;
+    	float excitementShortTerm;
+    	float excitementLongTerm;
+    	float engagementBoredom;
+    	float frustration;
+    	float meditation;
+    	float maxScore;
     	int lowerFaceAction;
     	int upperFaceAction;
+    	boolean playBackground = true;
     	
     	userID = new IntByReference(0);
     	
@@ -21,6 +28,12 @@ public class MindMusic {
 			System.out.println("Emotiv Engine start up failed.");
 			return;
 		}
+		
+		//Start recording
+		JavaSoundRecorder.recordSound();
+	
+		//Open GUI
+		MusicGUI gui = new MusicGUI();
 		
 		while (true) 
 		{
@@ -71,13 +84,12 @@ public class MindMusic {
 						System.out.println("Raise brow");
 						eyebrowExtent = EmoState.INSTANCE.ES_ExpressivGetEyebrowExtent(eState);
 						System.out.println("Eyebrow (raise): " + eyebrowExtent);
-						MusicPlayer.playHarp();
+						MusicPlayer.playHarp(eyebrowExtent);
 					}
 					
 					if (upperFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_FURROW.ToInt())
 					{
 						System.out.println("Furrow brow");	
-						MusicPlayer.playPiano();
 					}
 					
 					//Lower face actions: Smile, Smirk left, Smirk Right, Clench, Laugh.
@@ -87,7 +99,7 @@ public class MindMusic {
 						System.out.println("Smile");
 						smileExtent = EmoState.INSTANCE.ES_ExpressivGetSmileExtent(eState);
 						System.out.println("Smile: " + smileExtent);
-						MusicPlayer.playSax();
+						MusicPlayer.playTrumpet(smileExtent);
 					}
 					
 					if (lowerFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_CLENCH.ToInt())
@@ -95,31 +107,74 @@ public class MindMusic {
 						System.out.println("Clench");
 						clenchExtent = EmoState.INSTANCE.ES_ExpressivGetClenchExtent(eState);
 						System.out.println("Clench: " + clenchExtent);
-						MusicPlayer.playViolin();
+						MusicPlayer.playViolin(clenchExtent);
 					}
 					
 					if (lowerFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_LAUGH.ToInt())
+					{
 						System.out.println("Laugh");
+						MusicPlayer.playPiano();
+					}
+					
 					if (lowerFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_SMIRK_LEFT.ToInt())
+					{
 						System.out.println("SmirkLeft");
+						MusicPlayer.playCello();
+					}
+					
 					if (lowerFaceAction == EmoState.EE_ExpressivAlgo_t.EXP_SMIRK_RIGHT.ToInt())
+					{
 						System.out.println("SmirkRight");
+						MusicPlayer.playTriangle();
+					}
 					
-					
-					
-					
-					
-					System.out.print("ExcitementShortTerm: ");
-					System.out.println(EmoState.INSTANCE.ES_AffectivGetExcitementShortTermScore(eState));
-					System.out.print("ExcitementLongTerm: ");
-					System.out.println(EmoState.INSTANCE.ES_AffectivGetExcitementLongTermScore(eState));
-					System.out.print("EngagementBoredom: ");
-					System.out.println(EmoState.INSTANCE.ES_AffectivGetEngagementBoredomScore(eState));	
-					System.out.print("Frustration: ");
-					System.out.println(EmoState.INSTANCE.ES_AffectivGetFrustrationScore(eState));
-					System.out.print("Meditation: ");
-					System.out.println(EmoState.INSTANCE.ES_AffectivGetMeditationScore(eState));
-					
+					if (playBackground)
+					{
+
+						excitementShortTerm = EmoState.INSTANCE.ES_AffectivGetExcitementShortTermScore(eState);
+						excitementLongTerm = EmoState.INSTANCE.ES_AffectivGetExcitementLongTermScore(eState);
+						engagementBoredom = EmoState.INSTANCE.ES_AffectivGetEngagementBoredomScore(eState);
+						frustration = EmoState.INSTANCE.ES_AffectivGetFrustrationScore(eState);
+						meditation = EmoState.INSTANCE.ES_AffectivGetMeditationScore(eState);
+						
+						maxScore = Math.max(excitementShortTerm, excitementLongTerm);
+						maxScore = Math.max(maxScore, engagementBoredom);
+						maxScore = Math.max(maxScore, frustration);
+						maxScore = Math.max(maxScore, meditation);
+						
+						if (excitementShortTerm == maxScore ) 
+						{
+							//MusicPlayer.playBeat1(excitementShortTerm);
+						}
+							
+						
+						if (excitementLongTerm == maxScore || excitementShortTerm == maxScore)
+						{
+							MusicPlayer.playBeat2(excitementLongTerm);
+							Thread.sleep(1000); //1 second
+						}
+						
+						
+						if (engagementBoredom == maxScore)
+						{
+							MusicPlayer.playBeat3(engagementBoredom);
+							Thread.sleep(800);
+						}
+						
+						
+						if (frustration == maxScore)
+						{
+							MusicPlayer.playBeat4(frustration);
+							Thread.sleep(2000); 
+						}
+						
+						if (meditation == maxScore)
+						{
+							MusicPlayer.playBeat5(meditation);
+							Thread.sleep(1000);
+						}
+					}	
+					 
 				}
 			}
 			else if (state != EdkErrorCode.EDK_NO_EVENT.ToInt()) {
