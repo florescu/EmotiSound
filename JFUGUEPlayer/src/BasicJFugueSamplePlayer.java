@@ -11,6 +11,16 @@ public class BasicJFugueSamplePlayer {
 
     private BasicJFugueSamplePlayer instance = null;
 
+    private static List<String> musicalNotes = new ArrayList<String>() {{
+        add("A");
+        add("B");
+        add("C");
+        add("D");
+        add("E");
+        add("F");
+        add("G");
+    }};
+
     protected BasicJFugueSamplePlayer()
     {
     }
@@ -25,26 +35,60 @@ public class BasicJFugueSamplePlayer {
         return instance;
     }
 
-    public static void PlayOne(EmotivReading reading)
+    public static String PlayExcitementShortTerm(EmotivReading reading)
     {
-        float extent = reading.ExcitementShortTerm;
-
-        List<String> musicalNotes = new ArrayList<String>() {{
-            add("A");
-            add("B");
-            add("C");
-            add("D");
-            add("E");
-            add("F");
-            add("G");
-        }};
-
-        String musicalNote = MusicalNoteScale.Scale(extent * 100, 0, 100, musicalNotes);
-
-        Pattern song = new Pattern(musicalNote);
-
-        Player player = new Player();
-
-        player.play(song);
+        float excitementShortTermExtent = reading.ExcitementShortTerm;
+        String musicalNoteExcitementShortTerm = MusicalNoteScale.Scale(excitementShortTermExtent * 100, 0, 100, musicalNotes);
+        return musicalNoteExcitementShortTerm;
     }
+
+    public static String PlayExcitementLongTerm(EmotivReading reading)
+    {
+        float excitementLongTermExtent = reading.ExcitementLongTerm;
+        String musicalNoteExcitementLongTerm = MusicalNoteScale.Scale(excitementLongTermExtent * 100, 0, 100, musicalNotes);
+        return musicalNoteExcitementLongTerm;
+    }
+
+    public static String PlayEngagementBoredom(EmotivReading reading)
+    {
+        float engagementBoredomExtent = reading.EngagementBoredom;
+        String musicalNoteEngagementBoredom = MusicalNoteScale.Scale(engagementBoredomExtent * 100, 0, 100, musicalNotes);
+        return musicalNoteEngagementBoredom;
+    }
+
+    public static String PlayFrustration(EmotivReading reading)
+    {
+        float frustrationExtent = reading.Frustration;
+        String musicalNoteFrustration = MusicalNoteScale.Scale(frustrationExtent * 100, 0, 100, musicalNotes);
+        return musicalNoteFrustration;
+    }
+
+    public static String PlayMeditation(EmotivReading reading)
+    {
+        float meditationExtent = reading.Meditation;
+        String musicalNoteMeditation = MusicalNoteScale.Scale(meditationExtent * 100, 0, 100, musicalNotes);
+        return musicalNoteMeditation;
+    }
+
+    public static String PlayEyebrowRaise(EmotivReading reading)
+    {
+        float eyebrowRaiseExtent = reading.EyebrowRaise;
+        String musicalNoteEyebrowRaise = MusicalNoteScale.Scale(eyebrowRaiseExtent * 100, 0, 100, musicalNotes);
+        return musicalNoteEyebrowRaise;
+    }
+
+    public static String PlaySmile(EmotivReading reading)
+    {
+        float smileExtent = reading.Smile;
+        String musicalNoteSmile = MusicalNoteScale.Scale(smileExtent * 100, 0, 100, musicalNotes);
+        return musicalNoteSmile;
+    }
+
+    public static String PlayClench(EmotivReading reading)
+    {
+        float clenchExtent = reading.Clench;
+        String musicalNoteClench = MusicalNoteScale.Scale(clenchExtent * 100, 0, 100, musicalNotes);
+        return musicalNoteClench;
+    }
+
 }
