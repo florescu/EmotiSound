@@ -44,7 +44,7 @@ public class FloatScale <T> {
                 }
             }
 
-            return this.DomainList.get(nrPartitions);
+            return this.DomainList.get(nrPartitions-1);
         }
     }
 }
