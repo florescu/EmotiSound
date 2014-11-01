@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class BasicJFugueSamplePlayer {
     private static float clenchExtent;
 
     private static List<String> musicalNotes = new ArrayList<String>() {{
+        add("");
         add("A");
         add("B");
         add("C");
@@ -28,6 +30,7 @@ public class BasicJFugueSamplePlayer {
     }};
 
     private static List<String> noteDuration = new ArrayList<String>() {{
+        add("");
         add("n");
         add("x");
         add("t");
@@ -125,7 +128,7 @@ public class BasicJFugueSamplePlayer {
         return new StringFloatTuple(){{aString = musicalNotes; aFloat = clenchExtent;}};
     }
 
-    public static List<String> generateMusicalString(EmotivReading currentReading) {
+    public static List<String> GenerateMusicalStrings(EmotivReading currentReading) {
         final StringFloatTuple noteExcitementShortTerm = BasicJFugueSamplePlayer.GetExcitementShortTuple(currentReading);
         final StringFloatTuple noteExcitementLongTerm = BasicJFugueSamplePlayer.GetExcitementLongTermTuple(currentReading);
         final StringFloatTuple noteEngagementBoredom = BasicJFugueSamplePlayer.GetEngagementBoredomTuple(currentReading);
@@ -136,12 +139,7 @@ public class BasicJFugueSamplePlayer {
         final StringFloatTuple noteEyebrowRaise = BasicJFugueSamplePlayer.GetEyebrowRaiseTuple(currentReading);
 
         //Compute max.
-
-
-        
-
-
-        return new LinkedList<String>(){{
+        List<StringFloatTuple> musicalNotesWithValues = new ArrayList<StringFloatTuple>(){{
             add(noteExcitementShortTerm);
             add(noteExcitementLongTerm);
             add(noteEngagementBoredom);
@@ -151,6 +149,15 @@ public class BasicJFugueSamplePlayer {
             add(noteClench);
             add(noteEyebrowRaise);
         }};
+
+        Collections.sort(musicalNotesWithValues, Collections.reverseOrder());
+
+        List<String> result = new LinkedList<String>();
+        result.add(musicalNotesWithValues.get(0).aString);
+        result.add(musicalNotesWithValues.get(1).aString);
+        result.add(musicalNotesWithValues.get(2).aString);
+
+        return result;
     }
 
 }

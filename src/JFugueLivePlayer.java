@@ -2,8 +2,6 @@ import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 import org.jfugue.Player;
 
-import java.io.FileNotFoundException;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -37,7 +35,7 @@ public class JFugueLivePlayer {
             mc.AddReading(reading);
 
             EmotivReading currentReading = mc.GetNextReading();
-            List<String> notesList = BasicJFugueSamplePlayer.generateMusicalString(currentReading);
+            List<String> notesList = BasicJFugueSamplePlayer.GenerateMusicalStrings(currentReading);
 
             String notesAndVoices = MusicalStringComposer.AppendVoice(notesList);
 
