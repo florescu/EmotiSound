@@ -43,10 +43,32 @@ public class MusicPlayer {
 		 playSound(source, decibels);
 	}
 	
+	public static void playDrum(float extent) throws Exception
+	{
+		File source = new File("PlayList/drum2.wav");
+		float decibels;
+		if (extent < 0.5)
+			decibels = -DB_MULTIPLIER * extent;
+		else
+			decibels = MAX_DB_ALLOWED * extent;
+		playSound(source, decibels);
+	}
+	
 	public static void playGuitar() throws Exception
 	{
 		File source = new File("PlayList/guitar.wav");
 		float decibels = 0;
+		playSound(source, decibels);
+	}
+	
+	public static void playGuitar(float extent) throws Exception
+	{
+		File source = new File("PlayList/guitar.wav");
+		float decibels;
+		if (extent < 0.5)
+			decibels = -DB_MULTIPLIER * extent;
+		else
+			decibels = MAX_DB_ALLOWED * extent;
 		playSound(source, decibels);
 	}
 	
@@ -57,10 +79,32 @@ public class MusicPlayer {
 		playSound(source, decibels);
 	}
 	
+	public static void playBass(float extent) throws Exception
+	{
+		File source = new File("PlayList/bass.wav");
+		float decibels;
+		if (extent < 0.5)
+			decibels = -DB_MULTIPLIER * extent;
+		else
+			decibels = MAX_DB_ALLOWED * extent;
+		playSound(source, decibels);
+	}
+	
 	public static void playBass2() throws Exception
 	{
 		File source = new File("PlayList/bass2.wav");
 		float decibels = 0;
+		playSound(source, decibels);
+	}
+	
+	public static void playBass2(float extent) throws Exception
+	{
+		File source = new File("PlayList/bass2.wav");
+		float decibels;
+		if (extent < 0.5)
+			decibels = -DB_MULTIPLIER * extent;
+		else
+			decibels = MAX_DB_ALLOWED * extent;
 		playSound(source, decibels);
 	}
 	
@@ -136,47 +180,4 @@ public class MusicPlayer {
 		playSound(source, decibels);
 	}
 	
-	public static void playBeat2(float score) throws Exception
-	{
-		File source = new File("PlayList/beat2.wav");
-		float decibels;
-		if (score < 0.5)
-			decibels = -DB_MULTIPLIER * score * 2;
-		else
-			decibels = MAX_DB_ALLOWED * score / 3;
-		playSound(source, decibels);
-	}
-	
-	public static void playBeat3(float score) throws Exception
-	{
-		File source = new File("PlayList/beat3.wav");
-		float decibels;
-		if (score < 0.5)
-			decibels = -DB_MULTIPLIER * score * 2;
-		else
-			decibels = MAX_DB_ALLOWED * score / 3;
-		playSound(source, decibels);
-	}
-	
-	public static void playBeat4(float score) throws Exception
-	{
-		File source = new File("PlayList/beat4.wav");
-		float decibels;
-		if (score < 0.5)
-			decibels = -DB_MULTIPLIER * score * 2;
-		else
-			decibels = MAX_DB_ALLOWED * score / 3;
-		playSound(source, decibels);
-	}
-	
-	public static void playBeat5(float score) throws Exception
-	{
-		File source = new File("PlayList/beat5.wav");
-		float decibels;
-		if (score < 0.5)
-			decibels = -DB_MULTIPLIER * score * 2;
-		else
-			decibels = MAX_DB_ALLOWED * score / 3;
-		playSound(source, decibels);
-	}
 }
