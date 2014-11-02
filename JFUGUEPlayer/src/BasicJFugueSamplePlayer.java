@@ -94,7 +94,7 @@ public class BasicJFugueSamplePlayer {
         String musicalNoteEngagementBoredom =musicalNoteScale.DoScale(engagementBoredomExtent * 100);
         String duration = durationScale.DoScale(engagementBoredomExtent * 100);
         if (musicalNoteEngagementBoredom != null && !musicalNoteEngagementBoredom.isEmpty()) {
-            final String musicalNotes = "I[ACOUSTIC_BASS] " + musicalNoteEngagementBoredom + duration;
+            final String musicalNotes = "I[Music_Box] " + musicalNoteEngagementBoredom + duration;
             return new StringFloatTuple() {{
                 aString = musicalNotes;
                 aFloat = engagementBoredomExtent;
