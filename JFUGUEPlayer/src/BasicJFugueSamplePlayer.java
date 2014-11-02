@@ -128,6 +128,62 @@ public class BasicJFugueSamplePlayer {
         return new StringFloatTuple(){{aString = musicalNotes; aFloat = clenchExtent;}};
     }
 
+    public static String PlayBlink(EmotivReading reading)
+    {
+        if (reading.Blink)
+            return "I[Crystal] De";
+        else
+            return "";
+    }
+
+    public static String PlayWinkLeft(EmotivReading reading)
+    {
+        if (reading.WinkLeft)
+            return "I[Sweep] De";
+        else
+            return "";
+    }
+
+    public static String PlayWinkRight(EmotivReading reading)
+    {
+        if (reading.WinkRight)
+            return "I[Halo] De";
+        else
+            return "";
+    }
+
+    public static String PlaySmirkRight(EmotivReading reading)
+    {
+        if (reading.SmirkRight)
+            return "I[Metallic] De";
+        else
+            return "";
+    }
+
+    public static String PlaySmirkLeft(EmotivReading reading)
+    {
+        if (reading.SmirkLeft)
+            return "I[Bowed] De";
+        else
+            return "";
+    }
+
+    public static String PlayLaugh(EmotivReading reading)
+    {
+        if (reading.SmirkLeft)
+            return "I[Choir] De";
+        else
+            return "";
+    }
+
+    public static String PlayFurrowBrow(EmotivReading reading)
+    {
+        if (reading.FurrowBrow)
+            return "V9 [ACOUSTIC_BASS_DRUM] De";
+        else
+            return "";
+    }
+
     public static List<String> GenerateMusicalStrings(EmotivReading currentReading) {
         final StringFloatTuple noteExcitementShortTerm = BasicJFugueSamplePlayer.GetExcitementShortTuple(currentReading);
         final StringFloatTuple noteExcitementLongTerm = BasicJFugueSamplePlayer.GetExcitementLongTermTuple(currentReading);

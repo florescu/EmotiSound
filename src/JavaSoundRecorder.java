@@ -1,7 +1,7 @@
 import javax.sound.sampled.*;
 import java.io.*;
 
-public class JavaSoundRecorder {
+public class JavaSoundRecorder implements Runnable{
 	public static TargetDataLine line;
 	
 	public static AudioFormat getAudioFormat()
@@ -34,7 +34,7 @@ public class JavaSoundRecorder {
 		Thread stopper = new Thread(new Runnable() {
 			public void run() {
 				try {
-					Thread.sleep(18000); //3 minutes
+					Thread.sleep(180000); //3 minutes
 				}
 				catch (InterruptedException ex){
 					ex.printStackTrace();
@@ -46,4 +46,13 @@ public class JavaSoundRecorder {
 		stopper.start();
 		JavaSoundRecorder.saveFile();
 	}
+
+    @Override
+    public void run() {
+        try {
+            recordSound();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
