@@ -18,6 +18,9 @@ public class MusicalStringComposer {
                 continue;
             }
 
+            if(string.startsWith("V9"))
+                continue;
+
             if(counter == 16)
             {
                 break;

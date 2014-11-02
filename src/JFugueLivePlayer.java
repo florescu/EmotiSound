@@ -26,7 +26,8 @@ public class JFugueLivePlayer {
         }
 
         //Start recording
-        JavaSoundRecorder.recordSound();
+        Thread soundRecorder = new Thread(new JavaSoundRecorder());
+        soundRecorder.start();
 
         while (true)
         {
@@ -36,13 +37,17 @@ public class JFugueLivePlayer {
 
             EmotivReading currentReading = mc.GetNextReading();
 
-            //List<String> notesList = BasicJFugueSamplePlayer.GenerateMusicalStrings(currentReading);
-            //String notesAndVoices = MusicalStringComposer.AppendVoice(notesList);
-            //player.play(notesAndVoices);
+            List<String> notesList = BasicJFugueSamplePlayer.GenerateMusicalStrings(currentReading);
+            String notesAndVoices = MusicalStringComposer.AppendVoice(notesList);
+            try {
+                player.play(notesAndVoices);
+            }
+            catch (Exception e){
+                System.out.println(e);
+            }
 
-
-            String musicString = AdvancedJFugueSamplePlayer.ProcessReadingMethodOne(currentReading);
-            player.play(musicString);
+            //String musicString = AdvancedJFugueSamplePlayer.ProcessReadingMethodOne(currentReading);
+            //player.play(musicString);
         }
     }
 

@@ -63,8 +63,14 @@ public class BasicJFugueSamplePlayer {
         excitementShortTermExtent = reading.ExcitementShortTerm;
         String musicalNoteExcitementShortTerm = musicalNoteScale.DoScale(excitementShortTermExtent * 100);
         String duration = durationScale.DoScale(excitementShortTermExtent * 100);
-        final String musicalNotes = "I[Guitar] " + musicalNoteExcitementShortTerm + duration;
-        return new StringFloatTuple(){{aString = musicalNotes; aFloat = excitementShortTermExtent;}};
+        if (musicalNoteExcitementShortTerm != null && !musicalNoteExcitementShortTerm.isEmpty()) {
+            final String musicalNotes = "I[Guitar] " + musicalNoteExcitementShortTerm + duration;
+            return new StringFloatTuple() {{
+                aString = musicalNotes;
+                aFloat = excitementShortTermExtent;
+            }};
+        }
+        return null;
     }
 
     public static StringFloatTuple GetExcitementLongTermTuple(EmotivReading reading)
@@ -72,8 +78,14 @@ public class BasicJFugueSamplePlayer {
         excitementLongTermExtent = reading.ExcitementLongTerm;
         String musicalNoteExcitementLongTerm = musicalNoteScale.DoScale(excitementLongTermExtent * 100);
         String duration = durationScale.DoScale(excitementLongTermExtent * 100);
-        final String musicalNotes = "I[SYNTH_DRUM] " + musicalNoteExcitementLongTerm + duration;
-        return new StringFloatTuple(){{aString = musicalNotes; aFloat = excitementLongTermExtent;}};
+        if (musicalNoteExcitementLongTerm != null && !musicalNoteExcitementLongTerm.isEmpty()) {
+            final String musicalNotes = "I[SYNTH_DRUM] " + musicalNoteExcitementLongTerm + duration;
+            return new StringFloatTuple() {{
+                aString = musicalNotes;
+                aFloat = excitementLongTermExtent;
+            }};
+        }
+        return null;
     }
 
     public static StringFloatTuple GetEngagementBoredomTuple(EmotivReading reading)
@@ -81,8 +93,14 @@ public class BasicJFugueSamplePlayer {
         engagementBoredomExtent = reading.EngagementBoredom;
         String musicalNoteEngagementBoredom =musicalNoteScale.DoScale(engagementBoredomExtent * 100);
         String duration = durationScale.DoScale(engagementBoredomExtent * 100);
-        final String musicalNotes = "I[ACOUSTIC_BASS] " + musicalNoteEngagementBoredom + duration;
-        return new StringFloatTuple(){{aString = musicalNotes; aFloat = engagementBoredomExtent;}};
+        if (musicalNoteEngagementBoredom != null && !musicalNoteEngagementBoredom.isEmpty()) {
+            final String musicalNotes = "I[ACOUSTIC_BASS] " + musicalNoteEngagementBoredom + duration;
+            return new StringFloatTuple() {{
+                aString = musicalNotes;
+                aFloat = engagementBoredomExtent;
+            }};
+        }
+        return null;
     }
 
     public static StringFloatTuple GetFrustrationTuple(EmotivReading reading)
@@ -90,8 +108,12 @@ public class BasicJFugueSamplePlayer {
         frustrationExtent = reading.Frustration;
         String musicalNoteFrustration = musicalNoteScale.DoScale(frustrationExtent * 100);
         String duration = durationScale.DoScale(frustrationExtent * 100);
-        final String musicalNotes = "I[Piano] " + musicalNoteFrustration + duration;
-        return new StringFloatTuple(){{aString = musicalNotes; aFloat = frustrationExtent;}};
+        if (musicalNoteFrustration != null && !musicalNoteFrustration.isEmpty())
+        {
+            final String musicalNotes = "I[Piano] " + musicalNoteFrustration + duration;
+            return new StringFloatTuple(){{aString = musicalNotes; aFloat = frustrationExtent;}};
+        }
+        return null;
     }
 
     public static StringFloatTuple GetMeditationTuple(EmotivReading reading)
@@ -99,8 +121,14 @@ public class BasicJFugueSamplePlayer {
         meditationExtent = reading.Meditation;
         String musicalNoteMeditation = musicalNoteScale.DoScale(meditationExtent * 100);
         String duration = durationScale.DoScale(meditationExtent * 100);
-        final String musicalNotes = "I[Violin] " + musicalNoteMeditation + duration;
-        return new StringFloatTuple(){{aString = musicalNotes; aFloat = meditationExtent;}};
+        if (musicalNoteMeditation != null && !musicalNoteMeditation.isEmpty()) {
+            final String musicalNotes = "I[Violin] " + musicalNoteMeditation + duration;
+            return new StringFloatTuple() {{
+                aString = musicalNotes;
+                aFloat = meditationExtent;
+            }};
+        }
+        return null;
     }
 
     public static StringFloatTuple GetEyebrowRaiseTuple(EmotivReading reading)
@@ -108,8 +136,14 @@ public class BasicJFugueSamplePlayer {
         eyebrowRaiseExtent = reading.EyebrowRaise;
         String musicalNoteEyebrowRaise = musicalNoteScale.DoScale(eyebrowRaiseExtent * 100);
         String duration = durationScale.DoScale(eyebrowRaiseExtent * 100);
-        final String musicalNotes = "I[PAN_FLUTE] " + musicalNoteEyebrowRaise + duration;
-        return new StringFloatTuple(){{aString = musicalNotes; aFloat = eyebrowRaiseExtent;}};
+        if (musicalNoteEyebrowRaise != null && !musicalNoteEyebrowRaise.isEmpty()) {
+            final String musicalNotes = "I[PAN_FLUTE] " + musicalNoteEyebrowRaise + duration;
+            return new StringFloatTuple() {{
+                aString = musicalNotes;
+                aFloat = eyebrowRaiseExtent;
+            }};
+        }
+        return null;
     }
 
     public static StringFloatTuple GetSmileTuple(EmotivReading reading)
@@ -117,8 +151,14 @@ public class BasicJFugueSamplePlayer {
         smileExtent = reading.Smile;
         String musicalNoteSmile = musicalNoteScale.DoScale(smileExtent * 100);
         String duration = durationScale.DoScale(smileExtent * 100);
-        final String musicalNotes = "I[ALTO_SAX] " + musicalNoteSmile + duration;
-        return new StringFloatTuple(){{aString = musicalNotes; aFloat = smileExtent;}};
+        if (musicalNoteSmile != null && !musicalNoteSmile.isEmpty()) {
+            final String musicalNotes = "I[ALTO_SAX] " + musicalNoteSmile + duration;
+            return new StringFloatTuple() {{
+                aString = musicalNotes;
+                aFloat = smileExtent;
+            }};
+        }
+        return null;
     }
 
     public static StringFloatTuple PlayClench(EmotivReading reading)
@@ -126,14 +166,20 @@ public class BasicJFugueSamplePlayer {
         clenchExtent = reading.Clench;
         String musicalNoteClench = musicalNoteScale.DoScale(clenchExtent * 100);
         String duration = durationScale.DoScale(clenchExtent * 100);
-        final String musicalNotes = "I[Banjo] " + musicalNoteClench + duration;
-        return new StringFloatTuple(){{aString = musicalNotes; aFloat = clenchExtent;}};
+        if (musicalNoteClench != null && !musicalNoteClench.isEmpty()) {
+            final String musicalNotes = "I[Banjo] " + musicalNoteClench + duration;
+            return new StringFloatTuple() {{
+                aString = musicalNotes;
+                aFloat = clenchExtent;
+            }};
+        }
+        return null;
     }
 
     public static String PlayBlink(EmotivReading reading)
     {
         if (reading.Blink)
-            return "I[Crystal] De";
+            return "I[Crystal] Di";
         else
             return "";
     }
@@ -141,7 +187,7 @@ public class BasicJFugueSamplePlayer {
     public static String PlayWinkLeft(EmotivReading reading)
     {
         if (reading.WinkLeft)
-            return "I[Sweep] De";
+            return "I[Sweep] Di";
         else
             return "";
     }
@@ -149,7 +195,7 @@ public class BasicJFugueSamplePlayer {
     public static String PlayWinkRight(EmotivReading reading)
     {
         if (reading.WinkRight)
-            return "I[Halo] De";
+            return "I[Halo] Di";
         else
             return "";
     }
@@ -157,7 +203,7 @@ public class BasicJFugueSamplePlayer {
     public static String PlaySmirkRight(EmotivReading reading)
     {
         if (reading.SmirkRight)
-            return "I[Metallic] De";
+            return "I[Metallic] Di";
         else
             return "";
     }
@@ -165,7 +211,7 @@ public class BasicJFugueSamplePlayer {
     public static String PlaySmirkLeft(EmotivReading reading)
     {
         if (reading.SmirkLeft)
-            return "I[Bowed] De";
+            return "I[Bowed] Di";
         else
             return "";
     }
@@ -173,7 +219,7 @@ public class BasicJFugueSamplePlayer {
     public static String PlayLaugh(EmotivReading reading)
     {
         if (reading.SmirkLeft)
-            return "I[Choir] De";
+            return "I[Choir] Di";
         else
             return "";
     }
@@ -181,7 +227,7 @@ public class BasicJFugueSamplePlayer {
     public static String PlayFurrowBrow(EmotivReading reading)
     {
         if (reading.FurrowBrow)
-            return "V9 [ACOUSTIC_BASS_DRUM] De";
+            return  new Note(Note.ACOUSTIC_BASS_DRUM, 0.25).getMusicString();
         else
             return "";
     }
@@ -197,27 +243,77 @@ public class BasicJFugueSamplePlayer {
         final StringFloatTuple noteEyebrowRaise = BasicJFugueSamplePlayer.GetEyebrowRaiseTuple(currentReading);
 
         //Compute max.
-        List<StringFloatTuple> musicalNotesWithValues = new ArrayList<StringFloatTuple>(){{
-            add(noteExcitementShortTerm);
-            add(noteExcitementLongTerm);
-            add(noteEngagementBoredom);
-            add(noteFrustration);
-            add(noteMeditation);
-            add(noteSmile);
-            add(noteClench);
-            add(noteEyebrowRaise);
-        }};
+        List<StringFloatTuple> musicalNotesWithValues = new ArrayList<StringFloatTuple>();
+        if (noteExcitementShortTerm != null)
+            musicalNotesWithValues.add(noteExcitementShortTerm);
+
+        if (noteExcitementLongTerm != null)
+            musicalNotesWithValues.add(noteExcitementLongTerm);
+
+        if (noteEngagementBoredom != null)
+            musicalNotesWithValues.add(noteEngagementBoredom);
+
+        if (noteFrustration != null)
+            musicalNotesWithValues.add(noteFrustration);
+
+        if (noteMeditation != null)
+            musicalNotesWithValues.add(noteMeditation);
+
+        if (noteSmile != null)
+            musicalNotesWithValues.add(noteSmile);
+
+        if (noteClench != null)
+            musicalNotesWithValues.add(noteClench);
+
+        if (noteEyebrowRaise != null)
+            musicalNotesWithValues.add(noteEyebrowRaise);
 
         Collections.sort(musicalNotesWithValues, Collections.reverseOrder());
 
         List<String> result = new LinkedList<String>();
-        result.add(musicalNotesWithValues.get(0).aString);
-        result.add(musicalNotesWithValues.get(1).aString);
-        result.add(musicalNotesWithValues.get(2).aString);
+        if (musicalNotesWithValues.size() > 2) {
+            result.add(musicalNotesWithValues.get(0).aString);
+            result.add(musicalNotesWithValues.get(1).aString);
+            result.add(musicalNotesWithValues.get(2).aString);
+        }
+        else if (musicalNotesWithValues.size() == 2) {
+            result.add(musicalNotesWithValues.get(0).aString);
+            result.add(musicalNotesWithValues.get(1).aString);
+        }
+        else if (musicalNotesWithValues.size() == 1) {
+            result.add(musicalNotesWithValues.get(0).aString);
+        }
+
+        String blinkString = PlayBlink(currentReading);
+        if (blinkString != null && !blinkString.isEmpty())
+            result.add(blinkString);
+
+        String furrowString = PlayFurrowBrow(currentReading);
+        if (furrowString != null && !furrowString.isEmpty())
+            result.add(furrowString);
+
+        String laughString = PlayLaugh(currentReading);
+        if (laughString != null && !laughString.isEmpty())
+            result.add(laughString);
+
+        String smirkLeftString = PlaySmirkLeft(currentReading);
+        if (smirkLeftString != null && !smirkLeftString.isEmpty())
+            result.add(smirkLeftString);
+
+        String smirkRightString = PlaySmirkRight(currentReading);
+        if (smirkRightString != null && !smirkRightString.isEmpty())
+            result.add(smirkRightString);
+
+        String winkLeftString = PlayWinkLeft(currentReading);
+        if (winkLeftString != null && !winkLeftString.isEmpty())
+            result.add(winkLeftString);
+
+        String winkRightString = PlayWinkRight(currentReading);
+        if (winkRightString != null && !winkRightString.isEmpty())
+            result.add(winkRightString);
 
         return result;
     }
-
 }
 
 class StringFloatTuple implements Comparable<StringFloatTuple>

@@ -17,7 +17,7 @@ public class TestPlayer {
 
         String[] notes = Note.NOTES;
 
-        String musicString = aNote.getMusicString() + " " +  bNote.getMusicString() + " " + cNote.getMusicString() + "+" + cNote.getMusicString();
+        String musicString = "V0 I[ACOUSTIC_BASS] Ds V1 I[Violin] Bx V2 I[Sweep] De";
 
         player.play(musicString);
 
