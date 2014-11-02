@@ -18,6 +18,11 @@ public class MusicalStringComposer {
                 break;
             }
 
+            if(counter == 9)
+            {
+                counter++;
+            }
+
             String voice = "V" + counter;
 
             result += " " + voice + " " + string;
