@@ -11,7 +11,17 @@ public class TestPlayer {
 
         Pattern song = new Pattern();
 
-        song.add(new Pattern("V0 I[ECHOES] B V1 I[GUITAR] C"));
+        Note aNote = new Note(Note.PARALLEL, 1.0);
+        Note bNote = new Note(Note.LOW_TOM, 2.0);
+        Note cNote = new Note(Note.HAND_CLAP, 1.0);
+
+        String[] notes = Note.NOTES;
+
+        String musicString = aNote.getMusicString() + " " +  bNote.getMusicString() + " " + cNote.getMusicString() + "+" + cNote.getMusicString();
+
+        player.play(musicString);
+
+        //song.add(new Pattern("V0 I[ECHOES] B V1 I[GUITAR] C"));
 
         /*// "Frere Jacques"
         Pattern pattern1 = new Pattern("C5q D5q E5q C5q");

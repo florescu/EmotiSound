@@ -35,11 +35,14 @@ public class JFugueLivePlayer {
             mc.AddReading(reading);
 
             EmotivReading currentReading = mc.GetNextReading();
-            List<String> notesList = BasicJFugueSamplePlayer.GenerateMusicalStrings(currentReading);
 
-            String notesAndVoices = MusicalStringComposer.AppendVoice(notesList);
+            //List<String> notesList = BasicJFugueSamplePlayer.GenerateMusicalStrings(currentReading);
+            //String notesAndVoices = MusicalStringComposer.AppendVoice(notesList);
+            //player.play(notesAndVoices);
 
-            player.play(notesAndVoices);
+
+            String musicString = AdvancedJFugueSamplePlayer.ProcessReadingMethodOne(currentReading);
+            player.play(musicString);
         }
     }
 

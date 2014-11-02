@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import org.jfugue.Note;
+
+import java.util.*;
 
 /**
  * Created by rosudrag-pc on 11/1/2014.
@@ -28,6 +27,9 @@ public class BasicJFugueSamplePlayer {
         add("F");
         add("G");
     }};
+
+    //private static List<String> musicalNotes = new ArrayList<String>(Arrays.asList(Note.NOTES));
+
 
     private static List<String> noteDuration = new ArrayList<String>() {{
         add("");

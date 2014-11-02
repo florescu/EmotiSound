@@ -31,13 +31,12 @@ public class JFugueSamplePlayer {
             {
                 EmotivReading currentReading = mc.GetNextReading();
 
-                List<String> notesList = BasicJFugueSamplePlayer.GenerateMusicalStrings(currentReading);
+                //List<String> musicalStrings = BasicJFugueSamplePlayer.GenerateMusicalStrings(currentReading);
+                //player.play(musicalStrings.get(0));
 
-                String notesAndVoices = MusicalStringComposer.AppendVoice(notesList.subList(0,1));
-                String notesAndVoices2 = notesList.get(2);
+                String musicalString = AdvancedJFugueSamplePlayer.ProcessReadingMethodOne(currentReading);
+                player.play(musicalString);
 
-                player.play(notesAndVoices);
-                player2.play(notesAndVoices2);
             }
             soundRecorder.interrupt();
 
