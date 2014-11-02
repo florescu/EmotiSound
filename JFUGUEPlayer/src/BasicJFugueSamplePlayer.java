@@ -135,12 +135,6 @@ public class BasicJFugueSamplePlayer {
         final StringFloatTuple noteClench = BasicJFugueSamplePlayer.PlayClench(currentReading);
         final StringFloatTuple noteEyebrowRaise = BasicJFugueSamplePlayer.GetEyebrowRaiseTuple(currentReading);
 
-        //Compute max.
-
-
-        
-
-
         return new LinkedList<String>(){{
             add(noteExcitementShortTerm);
             add(noteExcitementLongTerm);
