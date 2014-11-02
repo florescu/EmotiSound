@@ -13,6 +13,11 @@ public class MusicalStringComposer {
 
         for(String string : strings)
         {
+            if(string.isEmpty())
+            {
+                continue;
+            }
+
             if(counter == 16)
             {
                 break;
