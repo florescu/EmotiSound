@@ -1,6 +1,8 @@
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
+import java.util.List;
+
 public class MindMusic {
 	
 	public static void main(String[] args) throws Exception
@@ -15,15 +17,22 @@ public class MindMusic {
 			System.out.println("Emotiv Engine start up failed.");
 			return;
 		}
-		
-		//Start recording
-		JavaSoundRecorder.recordSound();
-		
-		while (true) 
-		{
-			EmotivReading reading = EmotivReadingFactory.CreateReading(eEvent, eState, userID);
-			ReadingMusicPlayer.PlayBasic(reading);
-		}
+
+        MindToMusicController mc = MindToMusicController.GetInstance();
+
+        //Start recording
+        Thread soundRecorder = new Thread(new JavaSoundRecorder());
+        soundRecorder.start();
+
+        while (true) {
+            EmotivReading reading = EmotivReadingFactory.CreateReading(eEvent, eState, userID);
+
+            mc.AddReading(reading);
+
+            EmotivReading currentReading = mc.GetNextReading();
+
+            ReadingMusicPlayer.PlayBasic(currentReading);
+        }
     	 	
     }//main	 
 	 

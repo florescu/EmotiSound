@@ -12,7 +12,7 @@ public class JFugueSamplePlayer {
     private static Logger logger = Logger.GetInstance();
 
     public static void main(String[] args) throws Exception {
-        String filename = "sample2.txt";
+        String filename = "sample3.txt";
 
             List<EmotivReading> readings = EmotivReadingSampleDeserializer.DeserializeFileIntoReadingList(filename);
 
@@ -21,24 +21,22 @@ public class JFugueSamplePlayer {
             mc.AddCompleteSample(readings);
 
             Player player = new Player();
-            Player player2 = new Player();
 
             //Start recording
-            Thread soundRecorder = new Thread(new JavaSoundRecorder());
-            soundRecorder.start();
+            //Thread soundRecorder = new Thread(new JavaSoundRecorder());
+            //soundRecorder.start();
 
             while(mc.HasReadings())
             {
                 EmotivReading currentReading = mc.GetNextReading();
 
-                //List<String> musicalStrings = BasicJFugueSamplePlayer.GenerateMusicalStrings(currentReading);
-                //player.play(musicalStrings.get(0));
+                BasicJFugueSamplePlayer.PlayReading(player, currentReading);
 
-                String musicalString = AdvancedJFugueSamplePlayer.ProcessReadingMethodOne(currentReading);
-                player.play(musicalString);
+                //String musicalString = AdvancedJFugueSamplePlayer.ProcessReadingMethodOne(currentReading);
+                //player.play(musicalString);
 
             }
-            soundRecorder.interrupt();
+            //soundRecorder.interrupt();
 
     }
 }

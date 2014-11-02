@@ -1,4 +1,5 @@
 import org.jfugue.Note;
+import org.jfugue.Player;
 
 import java.util.*;
 
@@ -313,6 +314,22 @@ public class BasicJFugueSamplePlayer {
             result.add(winkRightString);
 
         return result;
+    }
+
+    public static void PlayReading(Player player, EmotivReading currentReading) {
+        List<String> musicalStrings = BasicJFugueSamplePlayer.GenerateMusicalStrings(currentReading);
+
+        String playString = "";
+        if(!musicalStrings.isEmpty())
+        {
+            playString += musicalStrings.get(0);
+
+            if(musicalStrings.size() >= 2)
+            {
+                playString += MusicalStringComposer.AppendVoice(musicalStrings.subList(1, musicalStrings.size()));
+            }
+        }
+        player.play(playString);
     }
 }
 
